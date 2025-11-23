@@ -155,7 +155,7 @@ Train a regression or time-series model to forecast congestion index.
 - Congestion Heatmap
 - Zone-wise KPIs
 - Rolling averages visualization
-![QuickSight Dashboard](dashboard/quicksight.png)
+![QuickSight Dashboard](dashboard/quicksight.PNG)
 ---
 
 ## **Final Outcome**

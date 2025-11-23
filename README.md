@@ -86,9 +86,9 @@ Fields: `camera_id`, `zone`, `latitude`, `longitude`, `installation_year`
 
 ## **Setup Steps**
 1. **Create S3 buckets**:
-- `streaming_firehose_row`
+- `smartcity-traffic-raw`
 - `smartcity-traffic-processed`
-2. **Create Kinesis Data Stream**: `new-stream`
+2. **Create Kinesis Data Stream**: `kinesis-stream`
 3. **Create Firehose delivery stream** → S3 raw zone
 4. **Set IAM roles** for Glue, Firehose, Athena
 5. **Run traffic generator**:
@@ -98,14 +98,20 @@ python gen_traffic_stream.py
 6. **Glue Crawler**: Crawl raw S3 path and register schema
 7. **Run Glue ETL job**:
 ```bash
-glue_traffic_etl.py
+glue-etl_processed.py
+glue_catalog_rds.py
 ```
 8. **Athena Queries**:
-Execute `athena/traffic_ddl.sql` for congestion analysis
+Execute `athena_queries/traffic.sql` for congestion analysis
 9. **QuickSight Dashboards**: Connect to Athena or RDS
 10. **Apply Lake Formation policies** for access control
 11. **Monitor**: Use CloudWatch for Firehose and Glue metrics
 12. **Cleanup**: Run teardown script
+
+---
+## **Workflow**
+![Architectural Workflow](architecture/workflow.png)
+
 
 ---
 
@@ -145,11 +151,11 @@ Train a regression or time-series model to forecast congestion index.
 ---
 
 ## **Dashboards**
-*(Add screenshots or links to QuickSight dashboards here)*
+
 - Congestion Heatmap
 - Zone-wise KPIs
 - Rolling averages visualization
-
+![QuickSight Dashboardt](dashboard/quicksight.png)
 ---
 
 ## **Final Outcome**
